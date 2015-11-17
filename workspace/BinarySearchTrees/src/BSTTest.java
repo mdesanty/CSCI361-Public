@@ -1,5 +1,5 @@
 
-public class BinarySearchTreeTest {
+public class BSTTest {
 
 	public static void main(String[] args) 
 	{	
@@ -10,23 +10,22 @@ public class BinarySearchTreeTest {
 		 * null 		Betty			Judy		null
 		 * 			null	Frank	null	Lucy
 		 */
-		BinarySearchTree<String> t1 = new BinarySearchTree<String>("Tom");
-		t1.add("John");
-		t1.add("Andy");
-		t1.add("Steve");
-		t1.add("Zander");
-		t1.add("Betty");
-		t1.add("Frank");
-		t1.add("Judy");
-		t1.add("Lucy");
+		BST<String> t1 = new BST<String>("Tom");
+		t1.addData("John");
+		t1.addData("Andy");
+		t1.addData("Steve");
+		t1.addData("Zander");
+		t1.addData("Betty");
+		t1.addData("Frank");
+		t1.addData("Judy");
+		t1.addData("Lucy");
 		
-		BinarySearchTreeOperations<String> operations = new BinarySearchTreeOperations<String>();
 		System.out.println("\nPreorder:");
-		operations.preOrderPrint(t1); 
+		t1.preOrderPrint(); 
 		System.out.println("\nInOrder:");
-		operations.inOrderPrint(t1);
+		t1.inOrderPrint();
 		System.out.println("\nsPostOrder:");
-		operations.postOrderPrint(t1);
+		t1.postOrderPrint();
 		
 		/*
 		Preorder:
