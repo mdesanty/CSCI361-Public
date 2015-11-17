@@ -1,7 +1,7 @@
 
-public class TreeOperations<T extends Comparable<T>> 
+public class BinarySearchTreeOperations<T extends Comparable<T>> 
 {
-	public void preOrderPrint(Tree<T> tree)
+	public void preOrderPrint(BinarySearchTree<T> tree)
 	{
 		System.out.print(tree.getData() + " ");
 		if (tree.getLeft() != null)
@@ -10,7 +10,7 @@ public class TreeOperations<T extends Comparable<T>>
 			preOrderPrint(tree.getRight());
 	}
 	
-	public void inOrderPrint(Tree<T> tree)
+	public void inOrderPrint(BinarySearchTree<T> tree)
 	{
 		if (tree.getLeft() != null)
 			inOrderPrint(tree.getLeft());
@@ -19,7 +19,7 @@ public class TreeOperations<T extends Comparable<T>>
 			inOrderPrint(tree.getRight());		
 	}
 	
-	public void postOrderPrint(Tree<T> tree)
+	public void postOrderPrint(BinarySearchTree<T> tree)
 	{
 		if (tree.getLeft() != null)
 			postOrderPrint(tree.getLeft());

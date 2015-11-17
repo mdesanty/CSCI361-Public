@@ -1,5 +1,5 @@
 
-public class TreeTest {
+public class BinarySearchTreeTest {
 
 	public static void main(String[] args) 
 	{	
@@ -10,7 +10,7 @@ public class TreeTest {
 		 * null 		Betty			Judy		null
 		 * 			null	Frank	null	Lucy
 		 */
-		Tree<String> t1 = new Tree<String>("Tom");
+		BinarySearchTree<String> t1 = new BinarySearchTree<String>("Tom");
 		t1.add("John");
 		t1.add("Andy");
 		t1.add("Steve");
@@ -20,7 +20,7 @@ public class TreeTest {
 		t1.add("Judy");
 		t1.add("Lucy");
 		
-		TreeOperations<String> operations = new TreeOperations<String>();
+		BinarySearchTreeOperations<String> operations = new BinarySearchTreeOperations<String>();
 		System.out.println("\nPreorder:");
 		operations.preOrderPrint(t1); 
 		System.out.println("\nInOrder:");
