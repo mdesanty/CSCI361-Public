@@ -11,14 +11,14 @@ public class BSTTest {
 		 * 			null	Frank	null	Lucy
 		 */
 		BST<String> t1 = new BST<String>("Tom");
-		t1.addData("John");
-		t1.addData("Andy");
-		t1.addData("Steve");
-		t1.addData("Zander");
-		t1.addData("Betty");
-		t1.addData("Frank");
-		t1.addData("Judy");
-		t1.addData("Lucy");
+		t1.add("John");
+		t1.add("Andy");
+		t1.add("Steve");
+		t1.add("Zander");
+		t1.add("Betty");
+		t1.add("Frank");
+		t1.add("Judy");
+		t1.add("Lucy");
 		
 		System.out.println("\nPreorder:");
 		t1.preOrderPrint(); 
@@ -35,6 +35,21 @@ public class BSTTest {
 		PostOrder:
 		Frank Betty Andy Lucy Judy Steve John Zander Tom 		
 		*/
+		
+		System.out.println("\n\nLooking for Zander, found " + t1.findTree("Zander"));  
+		System.out.println("Looking for Bob, found " + t1.findTree("Bob"));
+		
+		BST<String> tom = t1.findTree("Tom");
+		t1.deleteTree(tom);
+		System.out.println("\nPreorder:");
+		t1.preOrderPrint(); 
+		System.out.println("\nInOrder:");
+		t1.inOrderPrint();
+		System.out.println("\nsPostOrder:");
+		t1.postOrderPrint();
+		
 	}
+	
+	
 
 }
