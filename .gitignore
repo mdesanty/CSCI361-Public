@@ -1,8 +1,10 @@
+*.class
 *.pydevproject
 .metadata
 .gradle
 bin/
 tmp/
+temp/
 *.tmp
 *.bak
 *.swp
