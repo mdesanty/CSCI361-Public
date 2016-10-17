@@ -1,6 +1,8 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+// items that should be reviewed before going over this code are
+// comparable and comparator...
 public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<T>
 {
 	private Node m_head;
@@ -12,7 +14,8 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		m_count = 0;
 	}
 
-	public void add(K key, T item) 
+	@Override
+	public void add(K key, T item)
 	{
 		Node n = new Node(key, item);
 		Node loc = _findInsertLoc(key);
@@ -22,7 +25,8 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		m_count++;
 	}
 
-	public boolean remove(K key) 
+	@Override
+	public boolean remove(K key)
 	{
 		Node loc = _findNodeLoc(key);
 		if (loc == null)
@@ -37,7 +41,8 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		}
 	}
 
-	public T find(K key) 
+	@Override
+	public T find(K key)
 	{
 		Node n = _findNodeLoc(key);
 		if (n != null)
@@ -50,18 +55,21 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 			return n.m_data;
 	}
 
-	public boolean isEmpty() 
+	@Override
+	public boolean isEmpty()
 	{
 		return m_count == 0;
 	}
-	
-	public int getSize() 
+
+	@Override
+	public int getSize()
 	{
 		return m_count;
 	}
 
+	@Override
 	public String toString()
-	{	
+	{
 		StringBuffer sb = new StringBuffer("[");
 		if (!isEmpty())
 		{
@@ -77,10 +85,30 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		sb.append("]");
 		return sb.toString();
 	}
-	
+
+	@Override
+	public Iterator<T> iterator()
+	{
+		return new LIterator();
+	}
+
+	// NOTE: the two find methods below can be commpbined
+	// by abstrating out the test part of the if statement
+	// in the loop, this can be done with an interface and
+	// either an anonymous class or a lambda function added
+  // in Java 8
+
+	// looks for the location that this key
+	// should be placed in the list based on
+	// the natural ordering of the kyes,
+	// this is used by insert,
+	// this actually returns the node before the
+	// the locaiton we want to insert because
+	// we will use the next pointer to connnect
+	// the new node to the list
 	private Node _findInsertLoc(K key)
 	{
-		Node ret = m_head;		
+		Node ret = m_head;
 		while (ret.m_next != null)
 		{
 			if (ret.m_next.m_key.compareTo(key) <= 0)
@@ -92,9 +120,14 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		return ret;
 	}
 
+	// looks for the node with the specified key, used
+	// by find and remove, but not insert,
+	// this actually returns the node before the
+	// the node we are looking for because remove
+	// needs to bypass the node it is removing
 	private Node _findNodeLoc(K key)
 	{
-		Node ret = null;		
+		Node ret = null;
 		Node cur = m_head;
 		while (cur.m_next != null)
 		{
@@ -107,25 +140,19 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		}
 		return ret;
 	}
-	
-	public Iterator<T> iterator() 
-	{
-		return new LIterator();
-	}
 
-	
 	/**
 	 * <p>Internal class used to represent a link in a linked list
-	 * structure.  Each node in the list contains the element 
-	 * that was added to the list, the key associated with that element, 
-	 * and a reference to the next item in the list.</p>  
+	 * structure.  Each node in the list contains the element
+	 * that was added to the list, the key associated with that element,
+	 * and a reference to the next item in the list.</p>
 	 */
 	private class Node
 	{
 		private K m_key;
 	 	private T m_data;
 	 	private Node m_next;
-		
+
 		public Node(K key, T data)
 		{
 			m_key = key;
@@ -136,23 +163,25 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 
 	/**
 	 * <p>Internal class used to represent an iterator that
-	 * serves up items in the queue one at a time from 
-	 * the front to the rear.</p>  
+	 * serves up items in the queue one at a time from
+	 * the front to the rear.</p>
 	 */
 	private class LIterator implements Iterator<T>
 	{
 		private int m_loc = 0;
-		
-		public boolean hasNext() 
+
+		@Override
+		public boolean hasNext()
 		{
 			return (m_loc < getSize());
 		}
 
-		public T next() 
+		@Override
+		public T next()
 		{
 			if (m_loc == getSize())
 				throw new NoSuchElementException();
-			
+
 			Node cur = m_head;
 			for (int i = 0; i <= m_loc; i++)
 				cur = cur.m_next;
@@ -161,10 +190,10 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 		}
 
 		@Override
-		public void remove() 
+		public void remove()
 		{
-			throw new UnsupportedOperationException();			
+			throw new UnsupportedOperationException();
 		}
 	}
-	
+
 }
