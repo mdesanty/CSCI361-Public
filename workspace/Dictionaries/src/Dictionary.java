@@ -5,14 +5,14 @@ import java.util.List;
 public class Dictionary<K, V> implements IDictionary<K, V>
 {
     private int m_size;
-    private List<Item>[] m_buckets; 
-    
+    private List<Item>[] m_buckets;
+
     @SuppressWarnings("unchecked")
     public Dictionary(int size)
     {
         m_size = size;
         m_buckets = (LinkedList<Item>[]) new LinkedList<?>[m_size];
-        
+
         for (int i = 0; i < m_size; i++)
         {
             m_buckets[i] = new LinkedList<Item>();
@@ -60,7 +60,7 @@ public class Dictionary<K, V> implements IDictionary<K, V>
         }
         return ret;
     }
-    
+
     @Override
     public String toString()
     {
@@ -69,7 +69,7 @@ public class Dictionary<K, V> implements IDictionary<K, V>
         {
             for (Item item : list)
             {
-                String s = String.format("(%s -> %s) ", 
+                String s = String.format("(%s -> %s) ",
                         item.m_key.toString(), item.m_value.toString());
                 buff.append(s);
             }
@@ -77,7 +77,7 @@ public class Dictionary<K, V> implements IDictionary<K, V>
         buff.append("]");
         return buff.toString();
     }
-    
+
     private Item _search(K key)
     {
         Item ret = null;
@@ -92,7 +92,7 @@ public class Dictionary<K, V> implements IDictionary<K, V>
         }
         return ret;
     }
-    
+
     private class Item
     {
         private K m_key;
