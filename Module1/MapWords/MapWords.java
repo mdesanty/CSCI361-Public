@@ -87,6 +87,7 @@ public class MapWords
   }
 
   // ***********************************************
+  // Use a for each loop here!
   // Here is the expected output:
   // 20 -> [BEER, TENDER, BOIL]
   // 21 -> [OVER, MAKE, AHEAD, CLOVES, KEYWORDS, TOMATO]

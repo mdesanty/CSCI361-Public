@@ -1,4 +1,4 @@
-public class Person implements IPerson
+public class Person
 {
   private static int m_count;
   private String m_name;

@@ -1,4 +1,4 @@
-public class Person implements IPerson, Comparable<Person>
+public class Person implements Comparable<Person>
 {
   private static int m_count;
   private String m_name;
@@ -34,12 +34,7 @@ public class Person implements IPerson, Comparable<Person>
   @Override
   public int compareTo(Person other)
   {
-      if (m_age > other.getAge())
-        return 1;
-      else if (m_age < other.getAge())
-        return -1;
-      else
-        return 0;
+	  return m_name.compareTo(other.m_name);
   }
 
   @Override
