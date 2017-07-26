@@ -1,7 +1,7 @@
-	import java.util.*;
+import java.util.*;
 
-	public class NoIfs
-	{
+public class NoIfs
+{
 	public static void main(String args[])
 	{
 		NoIfs obj = new NoIfs();
