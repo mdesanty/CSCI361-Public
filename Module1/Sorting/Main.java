@@ -27,8 +27,9 @@ public class Main
 		Collections.sort(people);
 		System.out.println(people);
 
-		// order by length of name ascendking using an anonymous class...
+		// order by length of name ascending using an anonymous class...
 		Collections.sort(people,
+		
 		  new Comparator<Person>()
 		  {
 		    @Override
@@ -41,11 +42,16 @@ public class Main
 		      else
 		        return 0;
 		    }
-		  });
+		  }
+		  
+		  
+		  );
+		  
 		System.out.println(people);
 
 		// order by length of name descending using a lamda function...
 		Collections.sort(people,
+		
 		  (Person x1, Person x2) ->
 		  {
 		    if (x1.getName().length() > x2.getName().length())
@@ -55,6 +61,7 @@ public class Main
 		    else
 		      return 0;
 		  }
+		  
 		);
 		System.out.println(people);
 	}
