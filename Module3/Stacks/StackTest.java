@@ -8,10 +8,6 @@ public class StackTest
 	
 		IStack<Integer> stack = new StackLL<Integer>();
 		tester.test(stack);
-
-		// uncomment this code to test your stack...
-		//stack = new StackAry<Integer>();
-		//tester.test(stack);
 	}
 	
 	public void test(IStack<Integer> stack)
@@ -141,4 +137,6 @@ public class StackTest
 	{
 		if (!b)
 			throw new AssertionError("Test Failed!");
-	}}
+	}
+	
+}
