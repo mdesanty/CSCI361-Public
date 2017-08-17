@@ -12,7 +12,7 @@ public class QueueTest
 	{
 		System.out.println("Start tests...");
 		
-		// test push, pop, push, pop...
+		// test eq, dq, eq, dq...
 		check(queue.toString().equals("rear->"));
 		check(queue.isEmpty());
 		check(queue.getSize() == 0);
@@ -50,9 +50,8 @@ public class QueueTest
 		System.out.println(queue);
 		
 		// test iterator
-		// test iterator
 		int count = 0;
-		for (@SuppressWarnings("unused") int data : queue)
+		for (int data : queue)
 		{
 			count++;
 		}
@@ -88,12 +87,11 @@ public class QueueTest
 				
 		// test iterator
 		count = 0;
-		for (@SuppressWarnings("unused") int data : queue)
+		for (int data : queue)
 		{
 			count++;
 		}
 		check(count == queue.getSize());
-		
 		
 		i = queue.dequeue();
 		check(i == 10);

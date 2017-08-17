@@ -17,7 +17,8 @@ public class StackLL<T> implements IStack<T>
 	{
 		m_head = new Node(null);
 	}
-
+	
+	@Override
 	public void push(T item)
 	{
 		// runs in constant time...
@@ -28,6 +29,7 @@ public class StackLL<T> implements IStack<T>
 		m_count++;
 	}
 
+	@Override
 	public T pop()
 	{
 		// runs in constant time...
@@ -35,13 +37,14 @@ public class StackLL<T> implements IStack<T>
 		if (isEmpty())
 			throw new IllegalStateException("pop error: stack is empty!");
 
-		m_count--;
+		m_count--; 
 		T ret = m_head.m_next.m_data;
 		m_head.m_next = m_head.m_next.m_next;
 
 		return ret;
 	}
 
+	@Override
 	public T top()
 	{
 		// runs in constant time...
@@ -51,6 +54,7 @@ public class StackLL<T> implements IStack<T>
 		return  m_head.m_next.m_data;
 	}
 
+	@Override
 	public boolean isEmpty()
 	{
 		// runs in constant time...
@@ -58,6 +62,7 @@ public class StackLL<T> implements IStack<T>
 		return getSize() == 0;
 	}
 
+	@Override
 	public int getSize()
 	{
 		// runs in constant time...

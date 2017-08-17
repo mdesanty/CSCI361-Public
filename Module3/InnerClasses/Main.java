@@ -1,11 +1,11 @@
 public class Main
 {
+	private String m_noise = "Quack!";
+	
 	public static void main(String[] args)
 	{
 		new Main().go();
 	}
-
-	private String m_noise = "Quack!";
 
 	private void go()
 	{
@@ -23,6 +23,15 @@ public class Main
 		public void talk();
 	}
 
+	private class Duck implements IAnimal
+	{
+		@Override
+		public void talk()
+		{
+			System.out.printf("I like to say %s!%n",m_noise);
+		}
+	}
+
 	private static class Cat implements IAnimal
 	{
 		@Override
@@ -36,16 +45,4 @@ public class Main
 		public void talk()
 		{ System.out.println("Bark!"); }
 	}
-
-	private class Duck implements IAnimal
-	{
-		@Override
-		public void talk()
-		{
-			String msg = String.format("I like to say %s!%n",m_noise);
-			System.out.print(msg);
-			// System.out.printf("I like to say %s!%n",m_noise);
-		}
-	}
-
 }
