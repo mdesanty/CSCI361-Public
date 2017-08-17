@@ -17,6 +17,8 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 	@Override
 	public void add(K key, T item)
 	{
+		// linear time O(n)
+		
 		Node n = new Node(key, item);
 		Node loc = _findInsertLoc(key);
 		Node temp = loc.m_next;
@@ -28,6 +30,8 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 	@Override
 	public boolean remove(K key)
 	{
+		// linear time O(n)
+		
 		Node loc = _findNodeLoc(key);
 		if (loc == null)
 		{
@@ -44,6 +48,8 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 	@Override
 	public T find(K key)
 	{
+		// linear time O(n)
+		
 		Node n = _findNodeLoc(key);
 		if (n != null)
 		{
@@ -91,12 +97,6 @@ public class LList<K extends Comparable<K>, T> implements IList<K, T>, Iterable<
 	{
 		return new LIterator();
 	}
-
-	// NOTE: the two find methods below can be commpbined
-	// by abstrating out the test part of the if statement
-	// in the loop, this can be done with an interface and
-	// either an anonymous class or a lambda function added
-  // in Java 8
 
 	// looks for the location that this key
 	// should be placed in the list based on

@@ -1,16 +1,47 @@
-public class ListTest 
+public class UniqueListTest 
 {
 
 	public static void main(String[] args) 
 	{
-		LList<Integer, String> list = 
+		LList<Integer, String> list1 = 
 				new LList<Integer, String>();
 		
-		ListTest tester = new ListTest();
-		tester.test(list);
+		UniqueListTest tester = new UniqueListTest();
+		tester.test1(list1);
+		
+		LList<Integer, String> list2 = 
+			new LUniqueList<Integer, String>();
+
+		tester.test2(list2);
 	}
 
-	public void test(LList<Integer, String> list)
+	public void test2(LList<Integer, String> list)
+	{
+		System.out.println("Start tests...");
+		
+		boolean ok = false;
+		list.add(10, "Ten");
+		try 
+		{
+			list.add(10, "This is Ten");
+		}
+		catch (IllegalStateException e)
+		{
+			System.out.println(e.getMessage());
+			ok = true;
+		}
+		check(ok);
+	
+		list.add(20, "Twenty");
+		check(!list.isEmpty());
+		check(list.getSize() == 2);
+		check(list.find(20).toString().equals("Twenty"));
+	
+		System.out.println("Success!");
+		
+	}
+	
+	public void test1(LList<Integer, String> list)
 	{
 		System.out.println("Start tests...");
 
