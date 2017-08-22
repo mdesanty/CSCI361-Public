@@ -1,4 +1,4 @@
-public class BinaryTree<T> implements IBinaryTree<T>
+public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T>
 {
   private T m_value;
   private IBinaryTree<T> m_left;
