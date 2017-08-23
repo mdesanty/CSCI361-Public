@@ -3,53 +3,72 @@ public class BSTTest {
 
 	public static void main(String[] args) 
 	{	
-		/*
-		 * 													Tom
-		 * 					John												Zander	
-		 * 		Andy						Steve							null		null
-		 * null 		Betty			Judy		null
-		 * 			null	Frank	null	Lucy
-		 */
-		BST<String> t1 = new BST<String>("Tom");
-		t1.add("John");
-		t1.add("Andy");
-		t1.add("Steve");
-		t1.add("Zander");
-		t1.add("Betty");
-		t1.add("Frank");
-		t1.add("Judy");
-		t1.add("Lucy");
+		BST<Integer> t1 = buildTree();
 		
 		System.out.println("\nPreorder:");
 		t1.preOrderPrint(); 
 		System.out.println("\nInOrder:");
 		t1.inOrderPrint();
-		System.out.println("\nsPostOrder:");
+		System.out.println("\nPostOrder:");
 		t1.postOrderPrint();
 		
-		/*
-		Preorder:
-		Tom John Andy Betty Frank Steve Judy Lucy Zander 
-		InOrder:
-		Andy Betty Frank John Judy Lucy Steve Tom Zander 
-		PostOrder:
-		Frank Betty Andy Lucy Judy Steve John Zander Tom 		
-		*/
+		System.out.println("\n\nLooking for 12, found " + t1.findTree(12));  
+		System.out.println("Looking for 11, found " + t1.findTree(11));
+		System.out.println("Looking for 99, found " + t1.findTree(99));
 		
-		System.out.println("\n\nLooking for Zander, found " + t1.findTree("Zander"));  
-		System.out.println("Looking for Bob, found " + t1.findTree("Bob"));
-		
-		BST<String> tom = t1.findTree("Tom");
-		t1.deleteTree(tom);
+		System.out.println("\n\nDelete leaf 3");
+		t1.deleteTree(t1.findTree(3));
 		System.out.println("\nPreorder:");
 		t1.preOrderPrint(); 
 		System.out.println("\nInOrder:");
 		t1.inOrderPrint();
-		System.out.println("\nsPostOrder:");
+		System.out.println("\nPostOrder:");
 		t1.postOrderPrint();
 		
+		System.out.println("\n\nDelete 5 -- just child to left");
+		t1 = buildTree();
+		t1.deleteTree(t1.findTree(5));
+		System.out.println("\nPreorder:");
+		t1.preOrderPrint(); 
+		System.out.println("\nInOrder:");
+		t1.inOrderPrint();
+		System.out.println("\nPostOrder:");
+		t1.postOrderPrint();
+		
+		System.out.println("\n\nDelete 17 -- just child to right");
+		t1 = buildTree();
+		t1.deleteTree(t1.findTree(17));
+		System.out.println("\nPreorder:");
+		t1.preOrderPrint(); 
+		System.out.println("\nInOrder:");
+		t1.inOrderPrint();
+		System.out.println("\nPostOrder:");
+		t1.postOrderPrint();
+
+		System.out.println("\n\nDelete 15 -- child to left and right");
+		t1 = buildTree();
+		t1.deleteTree(t1.findTree(15));
+		System.out.println("\nPreorder:");
+		t1.preOrderPrint(); 
+		System.out.println("\nInOrder:");
+		t1.inOrderPrint();
+		System.out.println("\nPostOrder:");
+		t1.postOrderPrint();
 	}
 	
-	
+	public static BST<Integer> buildTree()
+	{
+		BST<Integer> t1 = new BST<Integer>(10);
+		t1.add(5);
+		t1.add(15);
+		t1.add(3);
+		t1.add(12);
+		t1.add(17);
+		t1.add(11);
+		t1.add(14);
+		t1.add(13);
+		t1.add(18);
+		return t1;
+	}
 
 }
