@@ -14,5 +14,5 @@ public class LUniqueList<K extends Comparable<K>, T> extends LList<K, T>
 	        throw new IllegalStateException("add error: Key exists already!");
 	        
 	    super.add(key, item);
-\	}
+	}
 }
