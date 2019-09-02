@@ -2,7 +2,7 @@ import java.util.*;
 
 public class DataStruct implements IDataStruct
 {
-    private int m_curI = 0;
+    private int m_curI = -1;
     private int m_curV = -1;
     private List<Integer> m_choices;
 
@@ -12,7 +12,7 @@ public class DataStruct implements IDataStruct
         while (ds.hasNext())
         {
             int i = ds.grabNext();
-            System.out.println(i);
+            System.out.println(i);  
             IDataStruct ds2 = ds.copyMe();
             while (ds2.hasNext())
             {
@@ -43,35 +43,54 @@ public class DataStruct implements IDataStruct
 
     public boolean hasNext()
     {
-        if (m_curI == m_choices.size()-1 && m_choices.get(m_curI) == -1)
-            return false;
-        else 
-            return m_curI < m_choices.size();
+        // System.out.println("Has Next");
+        int nextI = nextAvailIndex();
+        return nextI != -99;
     }
 
     public int grabNext()
-    {               
-        m_curV = m_choices.get(m_curI);  
-        while (m_curV == -1 && hasNext())
+    {     
+        // System.out.println("Grab Next");          
+        int nextI = nextAvailIndex();
+        if (nextI == -99)
         {
-            m_curV = m_choices.get(++m_curI);  
+            throw new IllegalStateException("can't grab next");
         }
+
+        m_curI = nextI;
+        m_curV = m_choices.get(nextI);  
         m_choices.set(m_curI, -1);
+
         return m_curV;
     }
 
     public void release()
     {  
-        if (m_curI < m_choices.size()-1)
-        {
-            m_choices.set(m_curI, m_curV);                 
-            m_curI++;
-        }
+        // System.out.println("Release");
+        m_choices.set(m_curI, m_curV);                 
     }
     
     public IDataStruct copyMe()
     {
         IDataStruct ret = new DataStruct(m_choices);
         return ret;
+    }
+
+    private int nextAvailIndex()
+    {
+        // System.out.println("nextAvail");
+        int loc = m_curI+1;
+        while (loc < m_choices.size() && m_choices.get(loc) == -1)
+        {
+            loc = loc+1;  
+            //System.out.println("loc " + loc);;
+        }
+
+        if (loc >= m_choices.size())
+        {
+            loc = -99;
+        }
+        
+        return loc;
     }
 }

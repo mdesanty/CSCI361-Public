@@ -40,7 +40,7 @@ public class Main2
 
             // if I just set the last value test for magic...
             if (i == N-1)
-            {                
+            {              
                 if (isMagic())
                 {
                     System.out.println("MAGIC!");

@@ -5,8 +5,6 @@ public class Main3
     private final int N = 3*3;
     private Integer m_square[] = new Integer[N];
 
-    private int temp = 5;
-
     public static void main(String args[])
     {
         new Main3().go();
@@ -37,15 +35,11 @@ public class Main3
             // if I just set the last value test for magic...
             if (i == N-1)
             {       
-                System.out.println(printSquare());         
-                temp--;
-                if (temp == 0)
-                    System.exit(0);
-                // if (isMagic())
-                // {
-                //     System.out.println("MAGIC!");
-                //     System.out.println(printSquare());
-                // }
+                if (isMagic())
+                {
+                    System.out.println("MAGIC!");
+                    System.out.println(printSquare());
+                }
             }
         }
     }
