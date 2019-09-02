@@ -1,51 +1,51 @@
 import java.util.*;
 
-public class Main2
+public class Main3
 {
     private final int N = 3*3;
     private Integer m_square[] = new Integer[N];
 
+    private int temp = 5;
+
     public static void main(String args[])
     {
-        new Main2().go();
+        new Main3().go();
     }
 
     private void go()
     {
-        List<Integer> nums = new ArrayList<Integer>();
-        initNums(nums);
-        
-        setAtAndRight(0, nums);        
+        IDataStruct nums = new DataStruct(N);        
+        setAtAndRight(0, nums.copyMe());        
     }
 
-    private void setAtAndRight(int i, List<Integer> nums)
-    {            
+    private void setAtAndRight(int i, IDataStruct nums)
+    {       
         if (i == N)
         {
             // terminate when I have set all of the values in the square...
         }
         else if (i < N)
         {
-            for (int j = 0; j < N; j++)
+            while (nums.hasNext())
             {
-                int x = nums.get(j);
-                if (x != -1)
-                {
-                    m_square[i] = x;
-                    nums.set(j, -1);
-                    setAtAndRight(i+1, nums);
-                    nums.set(j, x);            
-                }
+                m_square[i] = nums.grabNext();
+                setAtAndRight(i+1, nums.copyMe());
+                nums.release();
             }
+            nums.release();
 
             // if I just set the last value test for magic...
             if (i == N-1)
-            {                
-                if (isMagic())
-                {
-                    System.out.println("MAGIC!");
-                    System.out.println(printSquare());
-                }
+            {       
+                System.out.println(printSquare());         
+                temp--;
+                if (temp == 0)
+                    System.exit(0);
+                // if (isMagic())
+                // {
+                //     System.out.println("MAGIC!");
+                //     System.out.println(printSquare());
+                // }
             }
         }
     }

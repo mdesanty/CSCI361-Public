@@ -1,5 +1,7 @@
 public interface IDataStruct
 {
-    public boolean isEmpty();
-    public Integer getNext();
+    public boolean hasNext();
+    public int grabNext();
+    public void release();
+    public IDataStruct copyMe();
 }
