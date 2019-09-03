@@ -8,52 +8,80 @@ public class DataStruct implements IDataStruct
 
     public static void main(String args[])
     {
-        // test data struct...
+        IDataStruct ds = new DataStruct(9);
+        while (ds.hasNext())
+        {
+            int i = ds.grabNext();
+            System.out.println(i);  
+            IDataStruct ds2 = ds.copyMe();
+            while (ds2.hasNext())
+            {
+                int i2 = ds2.grabNext();
+                System.out.println("\t"+i2);                
+                ds2.release();
+            }            
+            ds.release();
+        }
     }
 
     public DataStruct(int n)
     {
-        // init...
+        m_choices = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++)
+            m_choices.add(i+1);
     }
 
     public DataStruct(List<Integer> l)
     {
-        // init...
+        m_choices = new ArrayList<Integer>();
+        m_choices.addAll(l);
     }
 
     public boolean hasNext()
     {
-        // find out if there are any numbers left...
-
-        return false;
+        int nextI = nextAvailIndex();
+        return nextI != -99;
     }
 
     public int grabNext()
-    {             
-        // find and return the value for the 
-        // next available number...
+    {     
+        int nextI = nextAvailIndex();
+        if (nextI == -99)
+        {
+            throw new IllegalStateException("can't grab next");
+        }
+
+        m_curI = nextI;
+        m_curV = m_choices.get(nextI);  
+        m_choices.set(m_curI, -1);
 
         return m_curV;
     }
 
     public void release()
     {  
-        // release curV...          
+        m_choices.set(m_curI, m_curV);                 
     }
     
     public IDataStruct copyMe()
     {
-        // make a copy...
-
-        return null;
+        IDataStruct ret = new DataStruct(m_choices);
+        return ret;
     }
 
     private int nextAvailIndex()
     {
-        // find the next available index
-        // which is the first one that is not negative
-        // if there is not a next one, return -99
+        int loc = m_curI+1;
+        while (loc < m_choices.size() && m_choices.get(loc) == -1)
+        {
+            loc = loc+1;  
+        }
+
+        if (loc >= m_choices.size())
+        {
+            loc = -99;
+        }
         
-        return -99;
+        return loc;
     }
 }
