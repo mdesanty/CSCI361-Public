@@ -5,6 +5,8 @@ public class Main3
     private final int N = 3*3;
     private Integer m_square[] = new Integer[N];
 
+    private int c = 0;
+
     public static void main(String args[])
     {
         new Main3().go();
@@ -13,7 +15,8 @@ public class Main3
     private void go()
     {
         IDataStruct nums = new DataStruct(N);        
-        setAtAndRight(0, nums.copyMe());        
+        setAtAndRight(0, nums.copyMe());   
+        System.out.println(c);     
     }
 
     private void setAtAndRight(int i, IDataStruct nums)
@@ -35,6 +38,7 @@ public class Main3
             // if I just set the last value test for magic...
             if (i == N-1)
             {       
+                c = c + 1;
                 if (isMagic())
                 {
                     System.out.println("MAGIC!");

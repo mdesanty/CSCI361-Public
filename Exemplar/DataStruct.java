@@ -8,20 +8,7 @@ public class DataStruct implements IDataStruct
 
     public static void main(String args[])
     {
-        IDataStruct ds = new DataStruct(9);
-        while (ds.hasNext())
-        {
-            int i = ds.grabNext();
-            System.out.println(i);  
-            IDataStruct ds2 = ds.copyMe();
-            while (ds2.hasNext())
-            {
-                int i2 = ds2.grabNext();
-                System.out.println("\t"+i2);                
-                ds2.release();
-            }            
-            ds.release();
-        }
+        // write a complete test here...
     }
 
     public DataStruct(int n)
