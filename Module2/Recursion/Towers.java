@@ -5,9 +5,12 @@ public class Towers
         new Towers().go();
     }
 
+    private int count = 0;
+
     public void go()
     {
-        moveTower(3, "A", "B", "C");
+        moveTower(13, "A", "B", "C");
+        System.out.printf("%s disk moves", count);
     }
 
     public void moveTower(int height, String from, String to, String via)
@@ -22,6 +25,7 @@ public class Towers
 
     public void moveDisk(String from, String to)
     {
+        count++;
         System.out.printf("Moving disk from %s to %s.%n", from, to);
     }
 }

@@ -35,8 +35,6 @@ public class Test
             System.out.println();
             System.out.print(t.getValue() + " ");
             System.out.println();
-        }
-        
-        
+        } 
     }
 }
